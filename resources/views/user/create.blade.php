@@ -17,41 +17,36 @@
                     <!-- form start -->
                       <div class="card-body">
                         <div class="form-group">
-                          <label for="exampleInputNama1">Nama Produk</label>
-                          <input type="text" name="nama_produk" class="form-control" id="exampleInputNama1" placeholder="Nama Produk">
-                        @error('nama')
+                          <label for="exampleInputNama1">Username</label>
+                          <input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                        @error('username')
                             <small>{{ $message }}</small>
                         @enderror
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputHarga1">Harga</label>
-                          <input type="text" name="harga"  class="form-control" id="exampleInputHarga1" placeholder="Harga Produk">
-                        @error('harga')
+                          <label for="exampleInputHarga1">E-mail</label>
+                          <input type="text" name="email"  class="form-control" id="exampleInputEmail1" placeholder="E-Mail">
+                        @error('email')
                             <small>{{ $message }}</small>
                         @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputStok1">Stok</label>
-                            <input type="text" name="stok" class="form-control" id="exampleInputStok1" placeholder="Jumlah Produk">
-                        @error('stok')
+                            <label for="exampleInputRole1">Role</label>
+                            <input type="text" name="role" class="form-control" id="exampleInputRole1" placeholder="Password">
+                        @error('role')
                             <small>{{ $message }}</small>
                         @enderror
                         </div>
-                      </div>
+                        </div>
                       <!-- /.card-body -->
 
-                      <div class="card-footer">
+                        <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Tambah Data</button>
                       </div>
                     </form>
                   </div>
-                  <!-- /.card -->
-                <!--/.col (left) -->
               </div>
         </form>
-
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
-
 @endsection

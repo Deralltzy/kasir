@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Validator;
 class BarangController extends Controller
 {
 
+    public function index(){
+
+        $barangs = BarangDetail::all();
+        return view('barang.index',compact('barangs'));
+    }
+
+
+
     public function create()
     {
         return view('barang.create');
@@ -32,7 +40,7 @@ class BarangController extends Controller
         $barang->stok = $request->stok;
         $barang->save();
 
-        return redirect()->route('index');
+        return redirect()->route('barang.index');
     }
 
     public function edit($id)
@@ -43,7 +51,7 @@ class BarangController extends Controller
         return view('barang.edit', compact('barang'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'nama_produk' => 'required',
@@ -51,20 +59,38 @@ class BarangController extends Controller
             'stok' => 'required',
         ]);
 
-        $barang = BarangDetail::findOrFail($id);
+        // $barang = BarangDetail::findOrFail($id);
+        // $barang->nama_produk = $request->nama_produk;
+        // $barang->harga = $request->harga;
+        // $barang->stok = $request->stok;
+        // $barang->save();
+
+        $barang = BarangDetail::find($request->id);
+
+    if ($barang) {
         $barang->nama_produk = $request->nama_produk;
         $barang->harga = $request->harga;
         $barang->stok = $request->stok;
         $barang->save();
 
         return redirect()->route('barang.index')->with('success','Produk telah diperbarui');
+    }}
+
+    public function destroy($id){
+
+        $barang = BarangDetail::findOrFail($id);
+        $nama_produk = $barang->nama_produk;
+        $barang->delete();
+
+        return redirect()->route('barang.index')->with('barangs', $nama_produk . ' Produk telah dihapus');
     }
 
-    public function destroy(BarangDetail $barang)
-    {
-        $barang->delete();
-        return redirect()->route('barang.index')->with('hapus', $barang->nama_produk . 'Produk telah dihapus');
-    }
+
+    //     public function destroy(BarangDetail $barang, $id){
+
+    //     $barang->delete();
+    //     return redirect()->route('barang.index')->with('barangs', $barang->nama_produk . 'Produk telah dihapus');
+    // }
 
 }
 
